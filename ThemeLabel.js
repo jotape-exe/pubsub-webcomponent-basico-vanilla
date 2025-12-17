@@ -1,14 +1,14 @@
 import { eventBus } from "./EventBus.js"
 
 class ThemeLabel extends HTMLElement {
+  
   value
   label
-  onThemeChanged
+  unsubscribe
 
   constructor() {
     super()
     this.value = "tema padrão"
-
     this.onThemeChanged = (value) => {
       this.value = value
       if (this.label) {
@@ -22,11 +22,14 @@ class ThemeLabel extends HTMLElement {
       <span>${this.value}</span>
     `
     this.label = this.querySelector('span')
-    eventBus.subscribe("THEME_CHANGED", this.onThemeChanged)
+    const themeSubject = eventBus.getSubject("THEME_CHANGED")
+    this.unsubscribe = themeSubject.subscribe(this.onThemeChanged)
   }
 
   disconnectedCallback() {
-    eventBus.unsubscribe("THEME_CHANGED", this.onThemeChanged)
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
   }
 }
 

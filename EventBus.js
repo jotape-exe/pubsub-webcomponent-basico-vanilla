@@ -1,34 +1,18 @@
+import { Subject } from "./Subject.js"
+
 export class EventBus {
-    events
+    subjects
+
     constructor() {
-        this.events = new Map()
+        this.subjects = new Map()
     }
 
-    subscribe(eventName, callback) {
-        if (!this.events.has(eventName)) {
-            this.events.set(eventName, [])
+    getSubject(eventName) {
+        if (!this.subjects.has(eventName)) {
+            this.subjects.set(eventName, new Subject())
         }
 
-        this.events.get(eventName).push(callback)
-    }
-
-    publish(eventName, data) {
-
-        if (!this.events.has(eventName)) return
-
-        const callbacks = this.events.get(eventName)
-
-        callbacks.forEach(cb => cb(data))
-    }
-
-    unsubscribe(eventName, callback) {
-        if (!this.events.has(eventName)) return
-
-        const callbacks = this.events.get(eventName)
-
-        const filtered = callbacks.filter(cb => cb !== callback)
-
-        this.events.set(eventName, filtered)
+        return this.subjects.get(eventName)
     }
 }
 

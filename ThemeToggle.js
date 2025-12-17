@@ -7,7 +7,6 @@ class ThemeToggle extends HTMLElement {
     connectedCallback() {
         this.render()
         this.button = this.querySelector('button')
-
         this.button.addEventListener('click', () => {
             this.toggleTheme()
         })
@@ -16,7 +15,7 @@ class ThemeToggle extends HTMLElement {
     toggleTheme() {
         this.value = this.value === "light" ? "dark" : "light"
         document.documentElement.setAttribute("data-theme", this.value)
-        eventBus.publish("THEME_CHANGED", this.value)
+        eventBus.getSubject("THEME_CHANGED").next(this.value)
     }
 
     render() {
