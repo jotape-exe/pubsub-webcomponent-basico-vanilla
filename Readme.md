@@ -40,3 +40,11 @@ O objetivo do projeto é **estudar arquitetura**, não frameworks.
 - Tema controlado via:
   ```html
   <html data-theme="light">
+  ```
+
+### Em Ação
+<img width="1358" height="502" alt="image" src="https://github.com/user-attachments/assets/d6690df6-f1ce-4a79-984f-52c7f40d8681" />
+
+### Exemplo Gerado com Google Gemini
+<img width="1376" height="768" alt="Gemini_Generated_Image_vu4kbovu4kbovu4k" src="https://github.com/user-attachments/assets/17d6c665-66dc-4b60-b0b0-b13d2a2cd923" />
+
